@@ -40,7 +40,18 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request){
+
+
+
         if($request->isMethod('post')){
+
+        //ユーザー登録のバリテーション登録
+          $request->validate(
+            [
+            'username' =>'required|between:2,12',
+            'mail' => 'required|between:5,40|email:filter,dns|unique:users,email',
+            'password' => 'required|between:8,20|alpha-num|confirmed:password',
+          ]);
 
             $username = $request->input('username');
             $mail = $request->input('mail');
@@ -57,7 +68,9 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function added(){
-        return view('auth.added');
+    //下記意図を考える
+    public function added(Request $request){
+        $username = $request->input('username');
+        return view('auth.added',['username'=>$username]);
     }
 }
