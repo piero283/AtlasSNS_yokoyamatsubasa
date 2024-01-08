@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    //
+    //Userモデルとのリレーション
+    //1対多の1
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

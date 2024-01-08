@@ -18,20 +18,71 @@
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
+
 </head>
 <body>
     <header>
-        <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
-                <div>
-                <ul>
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
-                </ul>
+        <div id="header-wrap">
+            <div id="head">
+               <h1 class="atlas">
+                    <a href="{{URL::to('/top')}}">
+                       <img src="{{asset('/images/atlas.png')}}">
+                    </a>
+               </h1>
+            </div>
+            <div id="user">
+                <p class="user-name">〇〇さん</p>
+              <!--アコーディオンメニュー-->
+                <nav class="menu_outer">
+                    <div class="menu_index">
+                        <div class="toggle_btn"></div>
+                    </div>
+                    <ul class="menu_container">
+                      <li><a href="{{ url('/top') }}">ホーム</a></li>
+                      <li><a href="{{ url('/profile') }}">プロフィール</a></li>
+                      <li><a href="{{ url('/logout') }}">ログアウト</a></li>
+                    </ul>
+                </nav>
+                <script>
+                    //menuタイトルの要素を取得
+                    const menuIndex = document.
+                    querySelector(".menu_index");
+                    //トグルスイッチの要素を取得
+                    const toggleBtn = document.
+                    querySelector(".toggle_btn");
+                    //メニューリストの要求を取得
+                    const menuContainer = document.
+                    querySelector(".menu_container");
+                    //メニューリストの縦幅を取得
+                    const listHeight = menuContainer.
+                    clientHeight + 1;
+                    menuContainer.style.transform =
+                    `translateY(-${listHeight}px)`;
+                    //menuの要素がクリックされたら
+                    menuIndex.addEventListener
+                    ("click", () => {
+
+                        //透明にしていたリストを表示させる
+                        menuContainer.style.opacity = 1;
+
+                        toggleBtn.classList.toggle
+                        ("active");
+
+                        if(!menuContainer.classList.
+                        contains("active")){
+                            menuContainer.classList.
+                            add("active");
+                            menuContainer.style.
+                            transform = "translateY(0px)";
+                        } else {
+                            menuContainer.classList.
+                            remove("active");
+                            menuContainer.style.
+                            transform = `translateY(-${listHeight}px)`;
+                        }
+                    });
+                </script>
+                <div class="icon"><img src="{{asset('/images/icon1.png')}}"></div>
             </div>
         </div>
     </header>
@@ -46,14 +97,14 @@
                 <p>フォロー数</p>
                 <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
+                <p class="btn"><a href="/followList">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
                 <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
+                <p class="btn"><a href="/followerList">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <p class="btn"><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>

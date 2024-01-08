@@ -31,17 +31,21 @@ Route::post('/added', 'Auth\RegisterController@added');
 
 Route::post('/top','PostsController@index');
 
-//ログインして中のみ表示したいものはここ
+//ログイン中のみ表示可能なページはここ
 //
-Route::group(['middleware' => 'auth'], function(){
+//Route::group(['middleware' => 'auth'], function(){
   //ログイン中のページ
 Route::get('/top','PostsController@index');
 
 Route::get('/profile','UsersController@profile');
+//
+Route::get('/logout','Auth\LoginController@login');
 
-Route::get('/search','UsersController@index');
+Route::get('/search','UsersController@search');
 
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+Route::get('/followList','FollowsController@followList');
 
-});
+Route::get('/followerList','FollowsController@followerList');
+
+
+//});
