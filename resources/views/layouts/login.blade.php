@@ -24,11 +24,11 @@
     <header>
         <div id="header-wrap">
             <div id="head">
-               <h1 class="atlas">
+               <p class="atlas">
                     <a href="{{URL::to('/top')}}">
                        <img src="{{asset('/images/atlas.png')}}">
                     </a>
-               </h1>
+               </p>
             </div>
             <div id="user">
                 <p class="user-name">〇〇さん</p>
@@ -82,7 +82,7 @@
                         }
                     });
                 </script>
-                <div class="icon"><img src="{{asset('/images/icon1.png')}}"></div>
+                <div class="icon"><img src="{{asset('/images/icon1.png')}}" class="icon1-image"></div>
             </div>
         </div>
     </header>

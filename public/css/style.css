@@ -144,3 +144,23 @@ header {
     flex: 0 0 19%;
     border-left: 1px solid #727272;
 }
+
+/*投稿フォーム index.blade*/
+
+/*アイコン*/
+.icon1-image {
+    width: 50px;
+}
+/*投稿ボタン*/
+.post-image {
+    width: 50px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 10%;
+
+}
+/*投稿テキスト*/
+.post-text {
+    border: none;
+    opacity: 0.3;
+}
