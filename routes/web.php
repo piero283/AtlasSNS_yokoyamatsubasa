@@ -12,7 +12,6 @@
 */
 
 //ログアウト中のページ
-Route::group(['middleware' => 'guest'], function(){
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 
@@ -21,10 +20,9 @@ Route::post('/register', 'Auth\RegisterController@register');
 
 Route::get('/added', 'Auth\RegisterController@added')->name('added');
 Route::post('/added', 'Auth\RegisterController@added');
-});
 
 //ログイン中のみ表示可能なページはここ
-//Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => ['loginCheck']], function(){
 Route::get('/top','PostsController@index')->name('top'); //トップページ
 Route::post('/top','PostsController@index');
 
@@ -39,6 +37,6 @@ Route::get('/search','UsersController@search')->name('search'); //ユーザー�
 Route::get('/followList','FollowsController@followList')->name('followList'); //フォローリストページへ
 Route::get('/followerList', 'FollowsController@followerList')->name('followerList'); //フォロワーリストページへ
 
-//});
+});
 
 Route::get('/logout','Auth\LoginController@showLoginForm')->name('logout'); //ログアウト
