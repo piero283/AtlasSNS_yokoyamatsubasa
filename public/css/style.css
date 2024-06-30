@@ -152,6 +152,10 @@ header {
     width: 50px;
 }
 /*投稿ボタン*/
+.pull-right {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+}
 .post-image {
     width: 50px;
     border: none;
