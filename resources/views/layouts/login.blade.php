@@ -86,11 +86,11 @@
             </div>
         </div>
     </header>
-    <div id="row">
-        <div id="container">
+    <section id="row">
+        <section id="container">
             @yield('content')
-        </div >
-        <div id="side-bar">
+        </section>
+        <section id="side-bar">
             <div id="confirm">
                 <p>〇〇さんの</p>
                 <div>
@@ -105,8 +105,8 @@
                 <p class="btn"><a href="/followerList">フォロワーリスト</a></p>
             </div>
             <p class="btn"><a href="/search">ユーザー検索</a></p>
-        </div>
-    </div>
+        </section>
+    </section>
     <footer>
     </footer>
     <script src="JavaScriptファイルのURL"></script>

@@ -11,41 +11,34 @@
 |
 */
 
-// Route::get('/'index, function () {
-//     return view('index');
-// });
-// Route::get('/home', 'HomeController@index')->name('home');
-
-//Auth::routes();
-
-
 //ログアウト中のページ
-Route::get('/login', 'Auth\LoginController@login');
+Route::group(['middleware' => 'guest'], function(){
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 
-Route::get('/register', 'Auth\RegisterController@register');
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('/register', 'Auth\RegisterController@register');
 
-Route::get('/added', 'Auth\RegisterController@added');
+Route::get('/added', 'Auth\RegisterController@added')->name('added');
 Route::post('/added', 'Auth\RegisterController@added');
-
-Route::post('/top','PostsController@index');
+});
 
 //ログイン中のみ表示可能なページはここ
-//
 //Route::group(['middleware' => 'auth'], function(){
-  //ログイン中のページ
-Route::get('/top','PostsController@index');
+Route::get('/top','PostsController@index')->name('top'); //トップページ
+Route::post('/top','PostsController@index');
 
-Route::get('/profile','UsersController@profile');
-//
-Route::get('/logout','Auth\LoginController@login');
+//投稿作成？以前書いて忘れたので後ほど復習
+Route::get('/post/create', 'PostsController@create')->name('post.create');
+Route::get('/posts', 'PostsController@store')->name('posts.store');
+//投稿一覧
+Route::get('post/create','PostsController@posts')->name('posts.index');
 
-Route::get('/search','UsersController@search');
-
-Route::get('/followList','FollowsController@followList');
-
-Route::get('/followerList','FollowsController@followerList');
-
+Route::get('/profile','UsersController@profile')->name('profile'); //プロフィール編集ページへ
+Route::get('/search','UsersController@search')->name('search'); //ユーザー検索ページへ
+Route::get('/followList','FollowsController@followList')->name('followList'); //フォローリストページへ
+Route::get('/followerList', 'FollowsController@followerList')->name('followerList'); //フォロワーリストページへ
 
 //});
+
+Route::get('/logout','Auth\LoginController@showLoginForm')->name('logout'); //ログアウト

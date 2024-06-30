@@ -39,15 +39,41 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    public function register(Request $request){
+    //登録フォーム表示
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
 
+    //ユーザー登録のバリテーション登録
+    public function validator(array $data){
+        return Validator::make($data, [
+            'username' =>'required|between:2,12',
+            'mail' => 'required|between:5,40|email:filter,dns|unique:users,email',
+            'password' => 'required|between:8,20|alpha-num|confirmed:password',
+        ]);
+    }
 
+    //取得したデータの登録
+    public function create(array $data){
+        return User::create([
+            'username' => $data['username'],
+            'mail' => $data['mail'],
+            'password' => Hash::make($data['password']),
+        ]);
+    }
 
+    //登録したユーザーネーム反映
+    public function added(Request $request){
+        $username = $request->input('username');
+        return view('auth.added',['username'=>$username]);
+    }
+
+    /*    public function register(Request $request){
         if($request->isMethod('post')){
 
         //ユーザー登録のバリテーション登録
-          $request->validate(
-            [
+          $request->validate([
             'username' =>'required|between:2,12',
             'mail' => 'required|between:5,40|email:filter,dns|unique:users,email',
             'password' => 'required|between:8,20|alpha-num|confirmed:password',
@@ -66,11 +92,5 @@ class RegisterController extends Controller
             return redirect('added');
         }
         return view('auth.register');
-    }
-
-    //下記意図を考える※１
-    public function added(Request $request){
-        $username = $request->input('username');
-        return view('auth.added',['username'=>$username]);
-    }
+    }*/
 }

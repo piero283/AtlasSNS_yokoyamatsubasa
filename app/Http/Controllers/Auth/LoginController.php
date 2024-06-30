@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/top';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -39,6 +39,12 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    /*　別の記述模索中 showLoginForm メゾット実装確認中
     public function login(Request $request){
         if($request->isMethod('post')){
 
@@ -51,5 +57,5 @@ class LoginController extends Controller
         }
         return view("auth.login");
     }
-
+    */
 }
