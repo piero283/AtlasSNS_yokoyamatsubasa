@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- 適切なURLを入力してください -->
-{!! Form::open(['url' => '/added']) !!}
+{!! Form::open(['url' => '/register']) !!}
 
 <!-- バリデーションチェックのエラーメッセージを表示させるコード -->
 @if($errors->any())

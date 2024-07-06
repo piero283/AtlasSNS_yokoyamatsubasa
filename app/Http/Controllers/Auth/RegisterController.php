@@ -39,58 +39,38 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    //登録フォーム表示
-    public function showRegistrationForm()
-    {
-        return view('auth.register');
-    }
 
-    //ユーザー登録のバリテーション登録
-    public function validator(array $data){
-        return Validator::make($data, [
-            'username' =>'required|between:2,12',
-            'mail' => 'required|between:5,40|email:filter,dns|unique:users,email',
-            'password' => 'required|between:8,20|alpha-num|confirmed:password',
-        ]);
-    }
-
-    //取得したデータの登録
-    public function create(array $data){
-        return User::create([
-            'username' => $data['username'],
-            'mail' => $data['mail'],
-            'password' => Hash::make($data['password']),
-        ]);
-    }
-
-    //登録したユーザーネーム反映
-    public function added(Request $request){
-        $username = $request->input('username');
-        return view('auth.added',['username'=>$username]);
-    }
-
-    /*    public function register(Request $request){
+    public function register(Request $request){
         if($request->isMethod('post')){
 
-        //ユーザー登録のバリテーション登録
-          $request->validate([
-            'username' =>'required|between:2,12',
-            'mail' => 'required|between:5,40|email:filter,dns|unique:users,email',
-            'password' => 'required|between:8,20|alpha-num|confirmed:password',
-          ]);
+            //ユーザー登録のバリテーション登録
+            $request->validate(
+                [
+                'username' =>'required|between:2,12',
+                'mail' => 'required|between:5,40|email:filter,dns',
+                'password' => 'required|between:8,20|alpha-num|confirmed:password',
+            ]);
 
             $username = $request->input('username');
             $mail = $request->input('mail');
             $password = $request->input('password');
 
-            User::create([
+            $user = User::create([
                 'username' => $username,
                 'mail' => $mail,
                 'password' => bcrypt($password),
             ]);
 
+            //セッションにユーザー情報を保存
+            session(['registered_user' => $user]);
+
             return redirect('added');
         }
         return view('auth.register');
-    }*/
+    }
+    public function added()
+    {
+        $user = session('registered_user');
+        return view('auth.added',['user' => $user]);
+    }
 }

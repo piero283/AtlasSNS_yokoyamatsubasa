@@ -45,16 +45,23 @@ class LoginController extends Controller
     }
 
     //　別の記述模索中 showLoginForm メゾット実装確認中
-    public function login(Request $request){
-        if($request->isMethod('post')){
-            $data=$request->only('mail','password');
-            dd($data);
+    public function login(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $data = $request->only('mail', 'password');
             // ログインが成功したら、トップページへ
             //↓ログイン条件は公開時には消すこと
-            if(Auth::attempt($data)){
+            if (Auth::attempt($data)) {
                 return redirect('/top');
             }
         }
         return view("auth.login");
     }
+    protected function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
 }
+
+
