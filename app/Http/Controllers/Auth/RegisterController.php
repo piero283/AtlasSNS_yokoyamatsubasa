@@ -71,6 +71,7 @@ class RegisterController extends Controller
     public function added()
     {
         $user = session('registered_user');
-        return view('auth.added',['user' => $user]);
+        session()->forget('registered_user'); //セッションをクリア
+        return view('auth.added', ['user' => $user]);
     }
 }

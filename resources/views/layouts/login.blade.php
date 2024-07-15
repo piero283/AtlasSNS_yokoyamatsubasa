@@ -20,96 +20,96 @@
     <!--OGPタグ/twitterカード-->
 
 </head>
-<body>
-    <header>
-        <div id="header-wrap">
-            <div id="head">
-               <p class="atlas">
-                    <a href="{{URL::to('/top')}}">
-                       <img src="{{asset('/images/atlas.png')}}">
-                    </a>
-               </p>
+    <body>
+        <header>
+            <div id="header-wrap">
+                <div id="head">
+                <p class="atlas">
+                        <a href="{{URL::to('/top')}}">
+                        <img src="{{asset('/images/atlas.png')}}">
+                        </a>
+                </p>
+                </div>
+                <div id="user">
+                    <p class="user-name">{{ $user->username ??'ゲスト' }}さん</p>
+                <!--アコーディオンメニュー-->
+                    <nav class="menu_outer">
+                        <div class="menu_index">
+                            <div class="toggle_btn"></div>
+                        </div>
+                        <ul class="menu_container">
+                        <li><a href="{{ url('/top') }}">ホーム</a></li>
+                        <li><a href="{{ url('/profile') }}">プロフィール</a></li>
+                        <li><a href="{{ url('/logout') }}">ログアウト</a></li>
+                        </ul>
+                    </nav>
+                    <script>
+                        //menuタイトルの要素を取得
+                        const menuIndex = document.
+                        querySelector(".menu_index");
+                        //トグルスイッチの要素を取得
+                        const toggleBtn = document.
+                        querySelector(".toggle_btn");
+                        //メニューリストの要求を取得
+                        const menuContainer = document.
+                        querySelector(".menu_container");
+                        //メニューリストの縦幅を取得
+                        const listHeight = menuContainer.
+                        clientHeight + 1;
+                        menuContainer.style.transform =
+                        `translateY(-${listHeight}px)`;
+                        //menuの要素がクリックされたら
+                        menuIndex.addEventListener
+                        ("click", () => {
+
+                            //透明にしていたリストを表示させる
+                            menuContainer.style.opacity = 1;
+
+                            toggleBtn.classList.toggle
+                            ("active");
+
+                            if(!menuContainer.classList.
+                            contains("active")){
+                                menuContainer.classList.
+                                add("active");
+                                menuContainer.style.
+                                transform = "translateY(0px)";
+                            } else {
+                                menuContainer.classList.
+                                remove("active");
+                                menuContainer.style.
+                                transform = `translateY(-${listHeight}px)`;
+                            }
+                        });
+                    </script>
+                    <div class="icon"><img src="{{asset('/images/icon1.png')}}" class="icon1-image"></div>
+                </div>
             </div>
-            <div id="user">
-                <p class="user-name">〇〇さん</p>
-              <!--アコーディオンメニュー-->
-                <nav class="menu_outer">
-                    <div class="menu_index">
-                        <div class="toggle_btn"></div>
+        </header>
+        <section id="row">
+            <section id="container">
+                @yield('content')
+            </section>
+            <section id="side-bar">
+                <div id="confirm">
+                    <p>〇〇さんの</p>
+                    <div>
+                    <p>フォロー数</p>
+                    <p>〇〇名</p>
                     </div>
-                    <ul class="menu_container">
-                      <li><a href="{{ url('/top') }}">ホーム</a></li>
-                      <li><a href="{{ url('/profile') }}">プロフィール</a></li>
-                      <li><a href="{{ url('/logout') }}">ログアウト</a></li>
-                    </ul>
-                </nav>
-                <script>
-                    //menuタイトルの要素を取得
-                    const menuIndex = document.
-                    querySelector(".menu_index");
-                    //トグルスイッチの要素を取得
-                    const toggleBtn = document.
-                    querySelector(".toggle_btn");
-                    //メニューリストの要求を取得
-                    const menuContainer = document.
-                    querySelector(".menu_container");
-                    //メニューリストの縦幅を取得
-                    const listHeight = menuContainer.
-                    clientHeight + 1;
-                    menuContainer.style.transform =
-                    `translateY(-${listHeight}px)`;
-                    //menuの要素がクリックされたら
-                    menuIndex.addEventListener
-                    ("click", () => {
-
-                        //透明にしていたリストを表示させる
-                        menuContainer.style.opacity = 1;
-
-                        toggleBtn.classList.toggle
-                        ("active");
-
-                        if(!menuContainer.classList.
-                        contains("active")){
-                            menuContainer.classList.
-                            add("active");
-                            menuContainer.style.
-                            transform = "translateY(0px)";
-                        } else {
-                            menuContainer.classList.
-                            remove("active");
-                            menuContainer.style.
-                            transform = `translateY(-${listHeight}px)`;
-                        }
-                    });
-                </script>
-                <div class="icon"><img src="{{asset('/images/icon1.png')}}" class="icon1-image"></div>
-            </div>
-        </div>
-    </header>
-    <section id="row">
-        <section id="container">
-            @yield('content')
-        </section>
-        <section id="side-bar">
-            <div id="confirm">
-                <p>〇〇さんの</p>
-                <div>
-                <p>フォロー数</p>
-                <p>〇〇名</p>
+                    <p class="btn"><a href="/followList">フォローリスト</a></p>
+                    <div>
+                    <p>フォロワー数</p>
+                    <p>〇〇名</p>
+                    </div>
+                    <p class="btn"><a href="/followerList">フォロワーリスト</a></p>
                 </div>
-                <p class="btn"><a href="/followList">フォローリスト</a></p>
-                <div>
-                <p>フォロワー数</p>
-                <p>〇〇名</p>
-                </div>
-                <p class="btn"><a href="/followerList">フォロワーリスト</a></p>
-            </div>
-            <p class="btn"><a href="/search">ユーザー検索</a></p>
+                <p class="btn"><a href="/search">ユーザー検索</a></p>
+            </section>
         </section>
-    </section>
-    <footer>
-    </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
-</body>
-</html>
+        <footer>
+        </footer>
+        <script src="JavaScriptファイルのURL"></script>
+        <script src="JavaScriptファイルのURL"></script>
+    </body>
+    </html>

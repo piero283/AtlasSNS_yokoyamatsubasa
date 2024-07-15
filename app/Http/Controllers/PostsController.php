@@ -20,12 +20,7 @@ class PostsController extends Controller
 
         $posts = Post::all(); //Postテーブルからレコード情報を取得
 
-        return view('posts.index',['posts' => $posts,]); //index.bladeへ送る
-    }
-
-    public function create(){
-        return view('post/create'); //新規作成のページへ飛ばす
-
+        return view('posts.index',['posts' => $posts,'user' => $user]); //index.bladeへ送る
     }
 
     public function store(Request $request)
@@ -47,6 +42,29 @@ class PostsController extends Controller
         $post->save();
         //新規投稿ページへリダイレクト
         //storeの時は2重送信の可能性がある為redirect
-        return redirect()->route('post.create');
+        return redirect()->route('top');
     }
+
+    public function edit($id)
+    {
+        $user = Auth::user(); // ログイン認証しているユーザーを取得
+        $post = Post::findOrFail($id); // IDで該当の投稿を取得
+
+        return view('posts.edit', ['post' => $post, 'user' => $user]); // 編集ビューへ送る
+    }
+
+    public function update(Request $request, $id)
+    {
+    // 投稿処理のバリテーション（入力必須、150文字以内）
+    $request->validate(['post' => 'required|max:150',]);
+
+    $post = Post::findOrFail($id); // IDで該当の投稿を取得
+    // 投稿内容を設定
+    $post->post = $request->input('post');
+    // データベースに保存
+    $post->save();
+    // トップページへリダイレクト
+    return redirect()->route('top');
+    }
+
 }

@@ -26,11 +26,10 @@ Route::group(['middleware' => ['auth']], function(){
 Route::get('/top','PostsController@index')->name('top'); //トップページ
 Route::post('/top','PostsController@index');
 
-//投稿作成？以前書いて忘れたので後ほど復習
-Route::get('/post/create', 'PostsController@create')->name('post.create');
-Route::get('/posts', 'PostsController@store')->name('posts.store');
-//投稿一覧
-Route::get('post/create','PostsController@posts')->name('posts.index');
+//投稿作成
+Route::post('/post/create','PostsController@store')->name('posts.store');
+Route::get('/post/edit','PostsController@edit')->name('posts.edit');
+Route::post('/post/edit','PostsController@update')->name('posts.update');
 
 Route::get('/profile','UsersController@profile')->name('profile'); //プロフィール編集ページへ
 Route::get('/search','UsersController@search')->name('search'); //ユーザー検索ページへ
