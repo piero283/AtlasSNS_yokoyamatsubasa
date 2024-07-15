@@ -27,11 +27,17 @@
         <p>ユーザーID:{{ $post->user_id }}</p>
         <p>投稿内容:{{ $post->post }}</p>
         <p>投稿日時:{{ $post->created_at }}</p>
-        <p><a href="/posts/{{$post->id}}">Details</a></p>
         <!--モーダル開くeditボタン-->
         <button class="modal-open js-modal-open" data-post-id="{{ $post->id }}" data-post-content="{{ $post->post }}">
           <img src="{{asset('images/edit.png')}}" class="post-image">
         </button>
+        {!! Form::open(['url' => 'post/delete']) !!}
+        @csrf
+        <input type="hidden" name="id" value="{{ $post->id }}">
+        <button class="delete-button" onclick="return confirm('本当に削除しますか？');">
+          <img src="{{asset('images/trash.png')}}" class="post-image">
+        </button>
+        {!! Form::close() !!}
       </div>
       <!--モーダル本体-->
       <div class="modal js-modal">

@@ -53,11 +53,12 @@ class PostsController extends Controller
         return view('posts.edit', ['post' => $post, 'user' => $user]); // 編集ビューへ送る
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
     // 投稿処理のバリテーション（入力必須、150文字以内）
     $request->validate(['post' => 'required|max:150',]);
 
+    $id = $request->input('id');
     $post = Post::findOrFail($id); // IDで該当の投稿を取得
     // 投稿内容を設定
     $post->post = $request->input('post');
@@ -65,6 +66,14 @@ class PostsController extends Controller
     $post->save();
     // トップページへリダイレクト
     return redirect()->route('top');
+    }
+
+    public function delete(Request $request)
+    {
+        $id = $request->input('id');
+        $post = Post::findOrFail($id); // IDで該当の投稿を取得
+        $post->delete();
+        return redirect()->route('top');
     }
 
 }

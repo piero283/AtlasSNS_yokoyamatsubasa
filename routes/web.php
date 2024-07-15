@@ -28,8 +28,9 @@ Route::post('/top','PostsController@index');
 
 //投稿作成
 Route::post('/post/create','PostsController@store')->name('posts.store');
-Route::get('/post/edit','PostsController@edit')->name('posts.edit');
-Route::post('/post/edit','PostsController@update')->name('posts.update');
+Route::post('/post/update','PostsController@update')->name('posts.update');
+Route::post('/post/delete','PostsController@delete')->name('posts.delete');
+
 
 Route::get('/profile','UsersController@profile')->name('profile'); //プロフィール編集ページへ
 Route::get('/search','UsersController@search')->name('search'); //ユーザー検索ページへ
