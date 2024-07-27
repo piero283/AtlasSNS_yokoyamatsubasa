@@ -33,7 +33,7 @@ Route::post('/post/delete','PostsController@delete')->name('posts.delete');
 
 
 Route::get('/profile','UsersController@profile')->name('profile'); //プロフィール編集ページへ
-Route::get('/search','UsersController@search')->name('search'); //ユーザー検索ページへ
+Route::get('/search','UsersController@search')->name('users.search'); //ユーザー検索ページへ
 Route::get('/followList','FollowsController@followList')->name('followList'); //フォローリストページへ
 Route::get('/followerList', 'FollowsController@followerList')->name('followerList'); //フォロワーリストページへ
 

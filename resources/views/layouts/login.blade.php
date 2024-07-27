@@ -31,7 +31,7 @@
                 </p>
                 </div>
                 <div id="user">
-                    <p class="user-name">{{ $user->username ??'ゲスト' }}さん</p>
+                    <p class="user-name">{{ Auth::user()->username ??'ゲスト' }}さん</p>
                 <!--アコーディオンメニュー-->
                     <nav class="menu_outer">
                         <div class="menu_index">
