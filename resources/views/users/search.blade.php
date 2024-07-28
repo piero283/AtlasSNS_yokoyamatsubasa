@@ -16,6 +16,20 @@
   <div class="">
   <img src="{{ asset('images/icon1.png') }}" class="post-image">
   <p>{{ $user->username }}</p>
+
+  @if (auth()->user()->isFollowing($user->id))
+  <form action="{{ route('unfollow') }}" method="POST">
+      {{ csrf_field() }}
+      <input type="hidden" name="followed_id" value="{{ $user -> id}}">
+      <button type="submit" class="btn btn-danger">フォロー解除</button>
+  </form>
+  @else
+  <form action="{{ route('follow') }}" method="POST">
+      {{ csrf_field() }}
+      <input type="hidden" name="followed_id" value="{{ $user -> id}}">
+      <button type="submit" class="btn btn-primary">フォローする</button>
+  </form>
+  @endif
   @endforeach
 
   @if(isset($query) && $query !== '')

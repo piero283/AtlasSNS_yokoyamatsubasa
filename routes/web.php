@@ -37,6 +37,9 @@ Route::get('/search','UsersController@search')->name('users.search'); //ユー�
 Route::get('/followList','FollowsController@followList')->name('followList'); //フォローリストページへ
 Route::get('/followerList', 'FollowsController@followerList')->name('followerList'); //フォロワーリストページへ
 
+Route::post('/follow', 'FollowsController@follow')->name('follow');
+Route::post('/unfollow', 'FollowsController@unfollow')->name('unfollow');
+
 });
 
 Route::get('/logout','Auth\LoginController@logout')->name('logout'); //ログアウト

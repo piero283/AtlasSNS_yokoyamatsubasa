@@ -10,4 +10,6 @@ class Follow extends Model
     protected $fillable = ['following_id','followed_id'];
 
     protected $table = 'follows';
+
+
 }
