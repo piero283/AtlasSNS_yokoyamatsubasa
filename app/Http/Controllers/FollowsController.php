@@ -24,9 +24,9 @@ class FollowsController extends Controller
         // フォロー
     public function follow(Request $request)
     {
-        $follower = auth()->user();
-        $followed_id = $request->input('followed_id');
-        // フォローしているか
+        $follower = auth()->user(); //ログインユーザーを取得
+        $followed_id = $request->input('followed_id'); //フォローするユーザーIDをリクエストから取得
+        // フォローしているか確認
         $is_following = $follower->isFollowing($followed_id);
         if(!$is_following) {
             // フォローしていなければフォローする
@@ -34,13 +34,12 @@ class FollowsController extends Controller
             return back();
         }
     }
-
     // フォロー解除
     public function unfollow(Request $request)
     {
         $follower = auth()->user();
         $followed_id = $request->input('followed_id');
-        // フォローしているか
+        // フォローしているか確認
         $is_following = $follower->isFollowing($followed_id);
         if($is_following) {
             // フォローしていればフォローを解除する
