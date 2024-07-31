@@ -23,4 +23,7 @@ class UsersController extends Controller
 
         return view('users.search',['users' => $users, 'query' => $query]); //ユーザーと検索ワードをビューに渡す
     }
+
+
+
 }

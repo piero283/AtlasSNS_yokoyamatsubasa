@@ -13,10 +13,9 @@
   </form>
 
   @foreach ($users as $user)
-  <div class="">
   <img src="{{ asset('images/icon1.png') }}" class="post-image">
   <p>{{ $user->username }}</p>
-  
+
 <!--フォロー機能-->
   @if (auth()->user()->isFollowing($user->id))
   <form action="{{ route('unfollow') }}" method="POST">

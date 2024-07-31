@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
+use App\Post;
 use App\Follow;
 
 class FollowsController extends Controller
@@ -15,13 +16,22 @@ class FollowsController extends Controller
     //    $this->middleware('auth');
     //}
 
-    public function followList(){
-        return view('follows.followList');
+    public function followList()
+    {
+        $user = auth()->user();
+        $followedUsers = $user->follows()->with('posts')->get(); // フォローしているユーザーとその投稿を取得
+        return view('follows.followList', ['followedUsers' => $followedUsers]);
     }
-    public function followerList(){
-        return view('follows.followerList');
+
+    public function followerList()
+    {
+        $user = auth()->user();
+        $followers = $user->followers()->with('posts')->get(); // フォロワーとその投稿を取得
+        return view('follows.followerList', ['followers' => $followers]);
     }
-        // フォロー
+
+
+    // フォロー
     public function follow(Request $request)
     {
         $follower = auth()->user(); //ログインユーザーを取得
@@ -46,6 +56,11 @@ class FollowsController extends Controller
             $follower->unfollow($followed_id);
             return back();
         }
+    }
+
+    public function show(User $user)
+    {
+        return view('users.profile', compact('user'));
     }
 
 }

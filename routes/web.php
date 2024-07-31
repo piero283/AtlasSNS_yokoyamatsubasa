@@ -40,6 +40,13 @@ Route::get('/followerList', 'FollowsController@followerList')->name('followerLis
 Route::post('/follow', 'FollowsController@follow')->name('follow');
 Route::post('/unfollow', 'FollowsController@unfollow')->name('unfollow');
 
+Route::get('/followList', 'FollowsController@followList')->name('followList');
+Route::get('/followerList', 'FollowsController@followerList')->name('followerList');
+
+Route::get('/profile/{user}', 'FollowsController@show')->name('users.profile');
+
+
+
 });
 
 Route::get('/logout','Auth\LoginController@logout')->name('logout'); //ログアウト
