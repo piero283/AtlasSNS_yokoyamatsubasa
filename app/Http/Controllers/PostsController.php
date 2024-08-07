@@ -5,14 +5,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Post;
+use App\Follow;
 
 class PostsController extends Controller
 {
     //Auth認証の方を修正したら解除
-    //public function __construct()
-    //{
-    //    $this->middleware('auth');
-    //}
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -20,7 +21,10 @@ class PostsController extends Controller
 
         $posts = Post::all(); //Postテーブルからレコード情報を取得
 
-        return view('posts.index',['posts' => $posts,'user' => $user]); //index.bladeへ送る
+        $follow_count = Follow::where('following_id', $user->id)->count(); //ユーザーがフォローしている数を取得
+        $follower_count = Follow::where('followed_id', $user->id)->count(); //ユーザーをフォローしている数を取得
+
+        return view('posts.index',['posts' => $posts,'user' => $user,'follow_count' => $follow_count,'follower_count' => $follower_count]); //index.bladeへ送る
     }
 
     public function store(Request $request)

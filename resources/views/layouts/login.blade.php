@@ -82,7 +82,7 @@
                             }
                         });
                     </script>
-                    <div class="icon"><img src="{{asset('/images/icon1.png')}}" class="icon1-image"></div>
+                    <div class="icon"><img src="{{ asset('storage/profile_images/' . $user->images) }}" class="icon1-image"></div>
                 </div>
             </div>
         </header>
@@ -92,15 +92,15 @@
             </section>
             <section id="side-bar">
                 <div id="confirm">
-                    <p>〇〇さんの</p>
+                    <p>{{ Auth::user()->username ?? 'ゲスト' }} さんの</p>
                     <div>
                     <p>フォロー数</p>
-                    <p>〇〇名</p>
+                    <p>{{ $follow_count }} 名</p>
                     </div>
                     <p class="btn"><a href="/followList">フォローリスト</a></p>
                     <div>
                     <p>フォロワー数</p>
-                    <p>〇〇名</p>
+                    <p>{{ $follower_count }} 名</p>
                     </div>
                     <p class="btn"><a href="/followerList">フォロワーリスト</a></p>
                 </div>

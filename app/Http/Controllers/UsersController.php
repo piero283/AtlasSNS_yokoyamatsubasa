@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use App\Follow;
+
 
 
 class UsersController extends Controller
 {
     public function profile(){
     $user = auth()->user();
-    return view('users.edit',['user' => $user]);
+
+    $follow_count = Follow::where('following_id', $user->id)->count(); //ユーザーがフォローしている数を取得
+    $follower_count = Follow::where('followed_id', $user->id)->count(); //ユーザーをフォローしている数を取得
+
+    return view('users.edit',['user' => $user,'follow_count' => $follow_count,'follower_count' => $follower_count]);
     }
 
     public function update(Request $request){
@@ -51,12 +57,17 @@ class UsersController extends Controller
 
     public function search(Request $request)
     {
+        $user = auth()->user();
+
         $query = $request->input('query'); //フォームから送信された検索キーワードを取得
         $users = User::where("username" , "like" , "%" . $query . "%")
                     ->where("id" , "!=" , Auth::user()->id)
                     ->get(); //ユーザー名で部分一致検索を実行
 
-        return view('users.search',['users' => $users, 'query' => $query]); //ユーザーと検索ワードをビューに渡す
+        $follow_count = Follow::where('following_id', $user->id)->count(); //ユーザーがフォローしている数を取得
+        $follower_count = Follow::where('followed_id', $user->id)->count(); //ユーザーをフォローしている数を取得
+
+        return view('users.search',['users' => $users, 'query' => $query,'follow_count' => $follow_count,'follower_count' => $follower_count]); //ユーザーと検索ワードをビューに渡す
     }
 
 
