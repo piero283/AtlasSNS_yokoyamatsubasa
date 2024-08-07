@@ -32,7 +32,9 @@ Route::post('/post/update','PostsController@update')->name('posts.update');
 Route::post('/post/delete','PostsController@delete')->name('posts.delete');
 
 
-Route::get('/profile','UsersController@profile')->name('profile'); //プロフィール編集ページへ
+Route::get('/profile','UsersController@profile')->name('edit'); //プロフィール編集ページへ
+Route::post('/profile','UsersController@update')->name('update'); //プロフィール編集ページへ
+
 Route::get('/search','UsersController@search')->name('users.search'); //ユーザー検索ページへ
 Route::get('/followList','FollowsController@followList')->name('followList'); //フォローリストページへ
 Route::get('/followerList', 'FollowsController@followerList')->name('followerList'); //フォロワーリストページへ
@@ -44,7 +46,6 @@ Route::get('/followList', 'FollowsController@followList')->name('followList');
 Route::get('/followerList', 'FollowsController@followerList')->name('followerList');
 
 Route::get('/profile/{user}', 'FollowsController@show')->name('users.profile');
-
 
 
 });
