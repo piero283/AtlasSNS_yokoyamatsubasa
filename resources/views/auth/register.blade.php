@@ -14,26 +14,35 @@
     </ul>
   </div>
 @endif
+<section class="register-section">
+  <h1 class="form-tittle">新規ユーザー登録</h1>
 
-<h2>新規ユーザー登録</h2>
+  <div class="form-group">
+    {{ Form::label('ユーザー名') }}
+    {{ Form::text('username',null,['class' => 'input']) }}
+  </div>
 
-{{ Form::label('ユーザー名') }}
-{{ Form::text('username',null,['class' => 'input']) }}
+  <div class="form-group">
+  {{ Form::label('メールアドレス') }}
+  {{ Form::text('mail',null,['class' => 'input']) }}
+  </div>
 
-{{ Form::label('メールアドレス') }}
-{{ Form::text('mail',null,['class' => 'input']) }}
+  <div class="form-group">
+  {{ Form::label('パスワード') }}
+  {{ Form::text('password',null,['class' => 'input']) }}
+  </div>
 
-{{ Form::label('パスワード') }}
-{{ Form::text('password',null,['class' => 'input']) }}
+  <div class="form-group">
+  {{ Form::label('パスワード確認') }}
+  {{ Form::text('password_confirmation',null,['class' => 'input']) }}
+  </div>
 
-{{ Form::label('パスワード確認') }}
-{{ Form::text('password_confirmation',null,['class' => 'input']) }}
+  <div class="form-btn">
+  {{ Form::submit('新規登録', ['class' => 'submit-button']) }}
+  </div>
 
-{{ Form::submit('登録') }}
+  <p class="link-a"><a href="/login" class="link">ログイン画面へ戻る</a></p>
 
-<p><a href="/login">ログイン画面へ戻る</a></p>
-
-{!! Form::close() !!}
-
-
+  {!! Form::close() !!}
+</section>
 @endsection
