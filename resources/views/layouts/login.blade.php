@@ -23,19 +23,16 @@
     <body>
         <header>
             <div id="header-wrap">
-                <div id="head">
-                <p class="atlas">
-                        <a href="{{URL::to('/top')}}">
-                        <img src="{{asset('/images/atlas.png')}}">
-                        </a>
-                </p>
+                <div id="head-logo">
+                    <a href="{{URL::to('/top')}}">
+                    <img src="{{asset('/images/atlas.png')}}">
+                    </a>
                 </div>
                 <div id="user">
-                    <p class="user-name">{{ Auth::user()->username ??'ゲスト' }}さん</p>
-                <!--アコーディオンメニュー-->
+                    <p class="user-name">{{ Auth::user()->username ??'ゲスト' }} さん</p>
+                    <!--アコーディオンメニュー-->
                     <nav class="menu_outer">
-                        <div class="menu_index">
-                            <div class="toggle_btn"></div>
+                        <div class="menu_index toggle_btn">
                         </div>
                         <ul class="menu_container">
                         <li><a href="{{ url('/top') }}">ホーム</a></li>
@@ -45,14 +42,11 @@
                     </nav>
                     <script>
                         //menuタイトルの要素を取得
-                        const menuIndex = document.
-                        querySelector(".menu_index");
+                        const menuIndex = document.querySelector(".menu_index");
                         //トグルスイッチの要素を取得
-                        const toggleBtn = document.
-                        querySelector(".toggle_btn");
+                        const toggleBtn = document.querySelector(".toggle_btn");
                         //メニューリストの要求を取得
-                        const menuContainer = document.
-                        querySelector(".menu_container");
+                        const menuContainer = document.querySelector(".menu_container");
                         //メニューリストの縦幅を取得
                         const listHeight = menuContainer.
                         clientHeight + 1;
@@ -91,20 +85,24 @@
                 @yield('content')
             </section>
             <section id="side-bar">
-                <div id="confirm">
-                    <p>{{ Auth::user()->username ?? 'ゲスト' }} さんの</p>
-                    <div>
+                <div class="confirm">
+                    <p class="side-name">{{ Auth::user()->username ?? 'ゲスト' }} さんの</p>
+                    <div class="side-follow">
                     <p>フォロー数</p>
-                    <p>{{ $follow_count }} 名</p>
+                    <p>{{ $follow_count }} 人</p>
                     </div>
-                    <p class="btn"><a href="/followList">フォローリスト</a></p>
-                    <div>
+                    <p class="side-btn-over">
+                        <a href="/followList" class="side-btn btn-follow">フォローリスト</a>
+                    </p>
+                    <div class="side-followed">
                     <p>フォロワー数</p>
-                    <p>{{ $follower_count }} 名</p>
+                    <p>{{ $follower_count }} 人</p>
                     </div>
-                    <p class="btn"><a href="/followerList">フォロワーリスト</a></p>
+                    <p class="side-btn-over">
+                        <a href="/followerList" class="side-btn btn-followed">フォロワーリスト</a>
+                    </p>
                 </div>
-                <p class="btn"><a href="/search">ユーザー検索</a></p>
+                <p class="side-btn-over-search"><a href="/search" class="side-btn btn-search">ユーザー検索</a></p>
             </section>
         </section>
         <footer>

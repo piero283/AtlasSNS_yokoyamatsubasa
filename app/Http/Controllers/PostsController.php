@@ -19,8 +19,9 @@ class PostsController extends Controller
     {
         $user = Auth::user(); //ログイン認証しているユーザーを取得
 
-        $posts = Post::all(); //Postテーブルからレコード情報を取得
-
+        $posts = Post::with('user')->get(); //Postテーブルからレコード情報とユーザー情報を取得
+        $followed_user_ids = Follow::where('following_id', $user->id)->pluck('followed_id'); // フォローしているユーザーのIDリストを取得
+        $posts = Post::with('user')->whereIn('user_id', $followed_user_ids)->orWhere('user_id', $user->id)->get(); // 自分とフォローしているユーザーの投稿のみを取得
         $follow_count = Follow::where('following_id', $user->id)->count(); //ユーザーがフォローしている数を取得
         $follower_count = Follow::where('followed_id', $user->id)->count(); //ユーザーをフォローしている数を取得
 

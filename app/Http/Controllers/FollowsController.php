@@ -28,7 +28,6 @@ class FollowsController extends Controller
     public function followList()
     {
         $user = auth()->user();
-
         $follow_count = Follow::where('following_id', $user->id)->count(); //ユーザーがフォローしている数を取得
         $follower_count = Follow::where('followed_id', $user->id)->count(); //ユーザーをフォローしている数を取得
 
@@ -39,12 +38,12 @@ class FollowsController extends Controller
     public function followerList()
     {
         $user = auth()->user();
-
         $follow_count = Follow::where('following_id', $user->id)->count(); //ユーザーがフォローしている数を取得
         $follower_count = Follow::where('followed_id', $user->id)->count(); //ユーザーをフォローしている数を取得
 
         $followers = $user->followers()->with('posts')->get(); // フォロワーとその投稿を取得
         return view('follows.followerList', ['followers' => $followers,'user' => $user,'follow_count' => $follow_count,'follower_count' => $follower_count]);
+
     }
 
 
@@ -77,7 +76,10 @@ class FollowsController extends Controller
 
     public function show(User $user)
     {
-        return view('users.profile', compact('user'));
+        $follow_count = Follow::where('following_id', $user->id)->count();
+        $follower_count = Follow::where('followed_id', $user->id)->count();
+
+        return view('users.profile', ['user' => $user,'follow_count' => $follow_count,'follower_count' => $follower_count]);
     }
 
 }

@@ -2,24 +2,41 @@
 
 @section('content')
 
-<h1>フォローリスト</h1>
-@foreach($followedUsers as $user)
-<img src="{{ asset('images/icon1.png') }}" class="post-image">
-@endforeach
+<div class="follow-list">
+    <h1>フォローリスト</h1>
+    <div class="list-icon">
+        @foreach($followedUsers as $user)
+        @if ($user->images === 'icon1.png')
+            <img src="{{ asset('images/icon1.png') }}" class="user-icon">
+        @else
+            <img src="{{ asset('storage/profile_images/' . $user->images) }}" class="user-icon">
+        @endif
+        @endforeach
+    </div>
+</div>
+
 <div class="container">
     @if($followedUsers->isNotEmpty())
         @foreach($followedUsers as $user)
-            <div class="user">
-                <h2>{{ $user->username }}</h2>
+            <div class="tweet-block">
                 <a href="{{ route('users.profile', ['user' => $user->id]) }}">
-                  <img src="{{ asset('images/icon1.png') }}" class="post-image">
+                    @if ($user->images === 'icon1.png')
+                        <img src="{{ asset('images/icon1.png') }}" class="user-icon">
+                    @else
+                        <img src="{{ asset('storage/profile_images/' . $user->images) }}" class="user-icon">
+                    @endif
                 </a>
                 @if($user->posts->isNotEmpty())
                     @foreach($user->posts as $post)
-                        <div class="post-item">
-                            <p>{{ $post->post }}</p>
-                            <p>{{ $post->created_at }}</p>
+                    <div class="tweet-sub-block">
+                        <div class="tweet-info">
+                            <p class="tweet-name">{{ $user->username }}</p>
+                            <p class="tweet-text">{{ $post->post }}</p>
                         </div>
+                        <div class="tweet-meta">
+                            <p class="tweet-time">{{ $post->created_at }}</p>
+                        </div>
+                    </div>
                     @endforeach
                 @else
                     <p>投稿はありません</p>
