@@ -2,6 +2,9 @@
 
 @section('content')
 
+
+
+
 <!--検索フォーム-->
 <div class="search-block">
   <form action="{{ route('users.search') }}" method="GET">
@@ -11,6 +14,21 @@
       <img src="{{ asset('/images/search.png') }}" alt="submit" class="post-image">
     </button>
   </form>
+  <div class="search-answer">
+    @if(isset($query) && $query !== '')
+    <P>検索ワード: {{ $query }}</P>
+    @endif
+
+    @if(isset($users) && $users->isNotEmpty())
+      <ul>
+        @foreach($users as $user)
+          <li>{{ $user->name }}</li>
+        @endforeach
+      </ul>
+    @else
+      <p>ユーザーが見つかりませんでした。</p>
+    @endif
+  </div>
 </div>
 
 <div class="user-list">
@@ -41,20 +59,5 @@
   </div>
   @endforeach
 </div>
-
-@if(isset($query) && $query !== '')
-<P>検索ワード: {{ $query }}</P>
-@endif
-
-@if(isset($users) && $users->isNotEmpty())
-  <ul>
-    @foreach($users as $user)
-      <li>{{ $user->name }}</li>
-    @endforeach
-  </ul>
-@else
-  <p>ユーザーが見つかりませんでした。</p>
-@endif
-
 
 @endsection

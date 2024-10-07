@@ -4,10 +4,12 @@
 
 
 <section class="added-section">
-  <p>{{ $user->username }}さん</p>
-  <p>ようこそ! AtlasSNSへ</p>
+  <div class="welcome">
+    <p>{{ $user->username }}さん</p>
+    <p>ようこそ! AtlasSNSへ</p>
+  </div>
   <div class="text">
-    <p>ユーザー登録が完了しました。</p>
+    <p>ユーザー登録が完了いたしました。</p>
     <p>早速ログインをしてみましょう。</p>
   </div>
   <div class="form-btn">

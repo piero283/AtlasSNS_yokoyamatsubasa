@@ -76,6 +76,7 @@ body {
   text-align: right;
   margin-bottom: 30px;
 }
+
 .submit-button {
   padding: 10px 20px;
   background-color: red;
@@ -97,7 +98,6 @@ body {
 .link {
   color: white;
   font-size: 12px;
-  border-bottom: 1px solid white;
 }
 
 .register-section {
@@ -113,8 +113,8 @@ body {
 }
 
 .added-section {
-  width: 240px;
-  height: 150px;
+  width: 260px;
+  height: 200px;
   margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.2);
   padding: 30px;
@@ -126,4 +126,10 @@ body {
 
 .text {
   margin-top: 25px;
+  line-height: 1.5;
+}
+
+.welcome {
+  line-height: 1.5;
+  font-weight: bold;
 }

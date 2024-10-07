@@ -45,7 +45,7 @@ header {
     font-size: 20px;
     display: flex;
     align-items: center;
-    margin-right: 120px;
+    margin-right: 70px;
 }
 
 .menu_outer {
@@ -62,7 +62,7 @@ header {
     border-top: 2px solid white;
     border-right: 2px solid white;
     transform: rotate(135deg);
-    margin-left: -100px;
+    margin-left: -40px;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -129,7 +129,7 @@ header {
 /*アイコン*/
 .icon1-image {
     width: 50px;
-    margin-left: -170px;
+    margin-left: -100px;
 }
 /*投稿ボタン*/
 .pull-right {
@@ -141,8 +141,8 @@ header {
     border: none;
     background-color: rgba(0, 0, 0, 0);
     border-radius: 10%;
-
 }
+
 /*投稿テキスト*/
 .post-text {
     width: 100%;
@@ -162,6 +162,8 @@ header {
 }
 
 .modal-container {
+    width: 750px;
+    height: 230px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -169,6 +171,53 @@ header {
     background: #fff;
     padding: 20px;
     border-radius: 5px;
+}
+
+.modal-delete-container {
+    width: 580px;
+    height: 82px;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.select-btn {
+    margin: 25px 0px 0px 350px;
+}
+
+.btn-danger {
+    width: 105px;
+    height: 35px;
+    border: none;
+    color: #fff;
+    background-color: #0456ce;
+    border-radius: 5px;
+}
+
+.btn-secondary {
+    width: 105px;
+    height: 35px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.form-control {
+    width: 650px;
+    height: 120px;
+}
+
+.modal-content .btn-primary {
+    border: none;
+    background: rgba(0, 0, 0, 0);
+    margin: 20px 0px 20px 325px;
+}
+
+.modal-content .post-image {
+    width: 40px;
 }
 
 .tweet-container form{
@@ -182,7 +231,7 @@ header {
 }
 
 .tweet-btn {
-    margin-left: 1200px;
+    margin-left: 1500px;
     width: 40px;
     border-radius: 10%;
 }
@@ -259,6 +308,11 @@ header {
     height: 35px;
 }
 
+.delete-button:hover img {
+    content: url('/images/trash-h.png');
+    border-radius: 3px;
+}
+
 .follow-list {
     display: flex;
     border-bottom: 5px solid #e0e0e0;
@@ -276,21 +330,29 @@ header {
 }
 
 .search-block {
+    display: flex;
     padding: 40px;
     margin-top: 10px;
     border-bottom: 5px solid #e0e0e0;
 }
 
 .search-block input {
-    height: 30px;
-    width: 280px;
+    height: 35px;
+    width: 300px;
     margin-bottom: 15px;
     margin-left: 30px;
+    border-radius: 5px;
+    font-size: 18px;
 }
 
 .search-block img {
     margin-bottom: -13px;
     width: 41px;
+}
+
+.search-answer {
+    margin: 12px 0px 0px 100px;
+    font-size: 18px;
 }
 
 .user-list {
@@ -343,8 +405,8 @@ header {
 
 .user-profile {
     font-size: 17px;
-    margin-left: 100px;
-    margin-top: 20px;
+    margin-left: 160px;
+    margin-top: 35px;
 }
 
 .user-profile-row {
@@ -377,7 +439,7 @@ header {
 
 .profile-update {
     margin-top: 20px;
-    margin-left: 500px;
+    margin-left: 550px;
     border: none;
     height: 35px;
     width: 140px;

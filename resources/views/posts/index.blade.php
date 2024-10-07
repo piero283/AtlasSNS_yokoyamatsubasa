@@ -48,7 +48,7 @@
           {!! Form::open(['url' => 'post/delete']) !!}
           @csrf
           <input type="hidden" name="id" value="{{ $post->id }}">
-          <button class="delete-button" onclick="return confirm('本当に削除しますか？');">
+          <button class="delete-button">
             <img src="{{ asset('images/trash.png') }}" class="tweet-image">
           </button>
           {!! Form::close() !!}
@@ -60,7 +60,6 @@
   <!--モーダル本体-->
       <div class="modal js-modal">
         <div class="modal-container">
-          <div class="modal-close js-modal-close">x</div>
           <div class="modal-content">
             {!! Form::open(['url' => 'post/update']) !!}
             @csrf
@@ -73,6 +72,20 @@
           </div>
         </div>
       </div>
+
+  <!-- ここに削除確認モーダルを追加 -->
+      <div id="deleteModal" class="modal">
+        <div class="modal-delete-container">
+          <div class="modal-delete-content">
+            <p>この投稿を削除します。よろしいでしょうか？</p>
+            <div class="select-btn">
+              <button id="confirmDelete" class="btn btn-danger">OK</button>
+              <button id="cancelDelete" class="btn btn-secondary">キャンセル</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 @endforeach
 
   @endsection

@@ -41,3 +41,25 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // 削除ボタンをクリックしたときに削除確認モーダルを表示
+    document.querySelectorAll('.delete-button').forEach(button => {
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        const deleteModal = document.getElementById('deleteModal');
+        deleteModal.style.display = 'block'; // モーダルを表示
+        const form = this.closest('form'); // 対応するフォームを取得
+
+        // OKボタンがクリックされたときにフォーム送信
+        document.getElementById('confirmDelete').addEventListener('click', function () {
+          form.submit(); // フォームを送信して削除実行
+        });
+
+        // キャンセルボタンがクリックされたときにモーダルを閉じる
+        document.getElementById('cancelDelete').addEventListener('click', function () {
+          deleteModal.style.display = 'none'; // モーダルを非表示
+          });
+        });
+      });
+  });
