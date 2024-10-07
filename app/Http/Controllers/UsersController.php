@@ -58,7 +58,6 @@ class UsersController extends Controller
     public function search(Request $request)
     {
         $user = auth()->user();
-
         $query = $request->input('query'); //フォームから送信された検索キーワードを取得
         $users = User::where("username" , "like" , "%" . $query . "%")
                     ->where("id" , "!=" , Auth::user()->id)
@@ -67,9 +66,7 @@ class UsersController extends Controller
         $follow_count = Follow::where('following_id', $user->id)->count(); //ユーザーがフォローしている数を取得
         $follower_count = Follow::where('followed_id', $user->id)->count(); //ユーザーをフォローしている数を取得
 
-        return view('users.search',['users' => $users, 'query' => $query,'follow_count' => $follow_count,'follower_count' => $follower_count]); //ユーザーと検索ワードをビューに渡す
+        return view('users.search',['user' => $user, 'users' => $users, 'query' => $query,'follow_count' => $follow_count,'follower_count' => $follower_count]); //ユーザーと検索ワードをビューに渡す
     }
-
-
 
 }

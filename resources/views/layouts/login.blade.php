@@ -76,7 +76,13 @@
                             }
                         });
                     </script>
-                    <div class="icon"><img src="{{ asset('storage/profile_images/' . $user->images) }}" class="icon1-image"></div>
+                    <div class="icon">
+                        @if (Auth::user()->images === 'icon1.png')
+                        <img src="{{ asset('images/' . Auth::user()->images) }}" class="icon1-image">
+                        @else
+                        <img src="{{ asset('storage/profile_images/' . Auth::user()->images) }}" class="icon1-image">
+                        @endif
+                    </div>
                 </div>
             </div>
         </header>
