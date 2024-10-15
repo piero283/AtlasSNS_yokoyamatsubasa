@@ -116,6 +116,19 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => ['username' => 'ユーザーネーム','mail' => 'メール','password' => 'パスワード','password_confirmation' => 'パスワード確認','post' => '投稿文字数','bio' => '自己紹介文'],
+
+    'required' => ':attribute は必須項目です。',
+    'min' => ['string' => ':attribute は最低 :min 文字以上で入力してください。',],
+    'max' => ['string' => ':attribute は最大 :max 文字までです。',],
+    'between' => ['string' => ':attribute は :min 文字から :max 文字の間で入力してください。',],
+    'unique' => ':attribute は既に存在しています。',
+    'confirmed' => ':attribute が確認欄と一致していません。',
+    'email' => ':attribute には有効なメールアドレスを入力してください。',
+    'confirmed' => ':attribute が確認欄と一致していません。',
+    'regex' => ':attribute にはアルファベットと数字のみを使用してください。',
+    'alpha_num' => ':attribute にはアルファベットと数字のみを使用してください。',
+
+
 
 ];
