@@ -76,8 +76,8 @@ class FollowsController extends Controller
 
     public function show(User $user)
     {
-        $follow_count = Follow::where('following_id', $user->id)->count();
-        $follower_count = Follow::where('followed_id', $user->id)->count();
+        $follow_count = Follow::where('followed_id', $user->id)->count();
+        $follower_count = Follow::where('following_id', $user->id)->count();
 
         return view('users.profile', ['user' => $user,'follow_count' => $follow_count,'follower_count' => $follower_count]);
     }
