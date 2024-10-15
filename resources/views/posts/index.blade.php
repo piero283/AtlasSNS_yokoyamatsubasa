@@ -16,6 +16,15 @@
   <div class="form-group">
       <img src="{{ asset('storage/profile_images/' . $user->images) }}" class="tweet-icon">
       <input type="text" name="post" placeholder="投稿内容を入力ください" class="post-text" required>
+        @if($errors->has('post'))
+        <div class="alert alert-danger">
+          <ul>
+            @foreach($errors->get('post') as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+        @endif
   </div>
   <button type="submit" class="pull-right">
     <img src="{{asset('/images/post.png')}}" alt="submit" class="tweet-btn">

@@ -145,7 +145,8 @@ header {
 
 /*投稿テキスト*/
 .post-text {
-    width: 100%;
+    width: 700px;
+    height: 50px;
     border: none;
     opacity: 0.3;
 }
@@ -208,6 +209,7 @@ header {
 .form-control {
     width: 650px;
     height: 120px;
+    resize: none;
 }
 
 .modal-content .btn-primary {
@@ -231,9 +233,10 @@ header {
 }
 
 .tweet-btn {
-    margin-left: 1500px;
+    margin-left: 1000px;
     width: 40px;
     border-radius: 10%;
+    cursor: pointer;
 }
 
 .form-group {
@@ -306,6 +309,7 @@ header {
 .tweet-image {
     width: 35px;
     height: 35px;
+    cursor: pointer;
 }
 
 .delete-button:hover img {
@@ -348,6 +352,7 @@ header {
 .search-block img {
     margin-bottom: -13px;
     width: 41px;
+    cursor: pointer;
 }
 
 .search-answer {
@@ -392,10 +397,12 @@ header {
 
 .list-item .btn-danger {
     background-color: #ed3833;
+    cursor: pointer;
 }
 
 .list-item .btn-primary {
     background-color: #52acff;
+    cursor: pointer;
 }
 
 .list-img {
@@ -509,10 +516,12 @@ header {
 
 .other-profile-bio .btn-danger{
     background-color: #ed3833;
+    cursor: pointer;
 }
 
 .other-profile-bio .btn-primary {
     background-color: #52acff;
+    cursor: pointer;
 }
 
 .other-tweet {
@@ -599,4 +608,8 @@ header {
 
 .side-btn-over-search {
     padding: 20px 0px 20px 100px;
+}
+
+.alert {
+    color: red;
 }
